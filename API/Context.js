@@ -9,6 +9,7 @@ const Context = ({ children }) => {
   const [category, setCategory] = useState("general");
   const [index, setIndex] = useState(1);
   const [source, setSource] = useState();
+  const [darkTheme, setDarkTheme] = useState(true);
 
   const fetchNews = async (reset = category) => {
     const { data } = await axios.get(getNewsAPI(reset));
@@ -36,7 +37,16 @@ const Context = ({ children }) => {
 
   return (
     <NewsContext.Provider
-      value={{ news, index, setIndex, fetchNews, setCategory, setSource }}
+      value={{
+        darkTheme,
+        setDarkTheme,
+        news,
+        index,
+        setIndex,
+        fetchNews,
+        setCategory,
+        setSource,
+      }}
     >
       {children}
     </NewsContext.Provider>

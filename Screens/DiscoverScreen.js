@@ -11,9 +11,10 @@ import {
 import Carousel from "react-native-snap-carousel";
 import { categories, sources } from "../API/api";
 import { NewsContext } from "../API/Context";
+import Search from "../components/Search";
 
 const DiscoverScreen = () => {
-  const { setCategory, setSource } = useContext(NewsContext);
+  const { setCategory, setSource, darkTheme } = useContext(NewsContext);
 
   const windowWidth = Dimensions.get("window").width;
   const SLIDE_WIDTH = Math.round(windowWidth / 3.5);
@@ -21,9 +22,14 @@ const DiscoverScreen = () => {
   return (
     <View style={styles.discover}>
       {/* search */}
+      <Search />
 
       {/* categories */}
-      <Text style={{ ...styles.subtitle, color: "white" }}>Categories</Text>
+      <Text
+        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
+      >
+        Categories
+      </Text>
       <Carousel
         layout={"default"}
         data={categories}
@@ -36,7 +42,9 @@ const DiscoverScreen = () => {
               }}
             >
               <Image source={{ uri: item.pic }} style={styles.categoryImage} />
-              <Text style={{ ...styles.name, color: "white" }}>
+              <Text
+                style={{ ...styles.name, color: darkTheme ? "white" : "black" }}
+              >
                 {item.name}
               </Text>
             </TouchableOpacity>
@@ -49,7 +57,9 @@ const DiscoverScreen = () => {
         inactiveSlideOpacity={1}
       />
 
-      <Text style={{ ...styles.subtitle, color: "white" }}></Text>
+      <Text
+        style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
+      ></Text>
       <View style={styles.sources}>
         {sources.map((s) => (
           <TouchableOpacity
